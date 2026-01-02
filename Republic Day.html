@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Republic Day 2026</title>
+
+<style>
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    background: radial-gradient(circle, #001111, #000);
+    color: #00ffcc;
+    overflow-y: auto;
+    transform: scale(0.85);
+    transform-origin: top center;
+    font-family: monospace;
+}
+
+/* TERMINAL BACKGROUND */
+#terminal {
+    position: fixed;
+    inset: 0;
+    padding: 20px;
+    font-size: 14px;
+    color: rgba(0,255,180,0.18);
+    white-space: pre-wrap;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* CANVAS */
+canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+#fireworks { z-index: 1; }
+#confetti  { z-index: 2; }
+
+/* ASCII */
+pre {
+    position: relative;
+    z-index: 4;
+    font-size: 22px;
+    text-align: center;
+    margin-top: 80px;
+    color: #00ffcc;
+    text-shadow: 0 0 12px #00ffcc, 0 0 30px #00ffff;
+}
+
+/* COUNTDOWN */
+#countdown {
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    font-size: 32px;
+    margin: 40px auto;
+    color: #00ff66;
+    text-shadow: 0 0 12px #00ff66;
+}
+
+/* THOUGHT */
+#thought {
+    position: relative;
+    z-index: 4;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 32px;
+    text-align: center;
+    color: #00bfff;
+    margin-bottom: 60px;
+}
+
+/* MESSAGE */
+#message {
+    position: relative;
+    z-index: 4;
+    max-width: 85%;
+    margin: 40px auto;
+    font-size: 22px;
+    text-align: center;
+}
+
+/* BUTTON */
+#copyBtn {
+    display: block;
+    margin: 20px auto 80px;
+    padding: 14px 28px;
+    font-size: 18px;
+    background: transparent;
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
+    border-radius: 8px;
+    cursor: pointer;
+}
+#copyBtn:hover {
+    background: #00ffcc;
+    color: #000;
+}
+</style>
+</head>
+
+<body>
+
+<div id="terminal"></div>
+<canvas id="fireworks"></canvas>
+<canvas id="confetti"></canvas>
+
+<pre>
+██╗  ██╗ █████╗ ██████╗ ██████╗ ██╗   ██╗
+██║  ██║██╔══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝
+███████║███████║██████╔╝██████╔╝ ╚████╔╝
+██╔══██║██╔══██║██╔═══╝ ██╔═══╝   ╚██╔╝
+██║  ██║██║  ██║██║     ██║        ██║
+╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝        ╚═╝
+
+██████╗ ███████╗██████╗ ██╗   ██╗██████╗ ██╗     ██╗ ██████╗
+██╔══██╗██╔════╝██╔══██╗██║   ██║██╔══██╗██║     ██║██╔════╝
+██████╔╝█████╗  ██████╔╝██║   ██║██████╔╝██║     ██║██║     
+██╔══██╗██╔══╝  ██╔═══╝ ██║   ██║██╔══██╗██║     ██║██║     
+██║  ██║███████╗██║     ╚██████╔╝██████╔╝███████╗██║╚██████╗
+╚═╝  ╚═╝╚══════╝╚═╝      ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝
+
+██████╗  █████╗ ██╗   ██╗     ║████
+██╔══██╗██╔══██╗╚██╗ ██╔╝     ║████
+██║  ██║███████║ ╚████╔╝      ║████
+██║  ██║██╔══██║  ╚██╔╝       ║████
+██████╔╝██║  ██║   ██║           
+╚═════╝ ╚═╝  ╚═╝   ╚═╝        ║████
+
+██████╗  ██████╗ ██████╗ ███████╗
+╚════██╗██╔═████╗╚════██╗██╔════╝
+ █████╔╝██║██╔██║ █████╔╝███████╗
+██╔═══╝ ████╔╝██║██╔═══╝ █     █║
+███████╗╚██████╔╝███████╗███████║
+╚══════╝ ╚═════╝ ╚══════╝╚══════╝
+</pre>
+
+<div id="countdown">Loading countdown…</div>
+
+<div id="thought"></div>
+
+<div id="message">
+A nation isn’t built by code — it’s built by courage.<br>
+Rights empower us. Duties define us.<br>
+Unity is our strongest firewall.<br><br>
+<b>Happy Republic Day 2026 🇮🇳</b>
+</div>
+
+<button id="copyBtn" onclick="copyMessage()">📋 Copy Republic Day Message</button>
+
+<script>
+/* ================= TERMINAL TYPEWRITER ================= */
+
+const terminalLines = [
+"> g++ hack.cpp -o hack",
+"> ./hack",
+"#include <iostream>",
+"using namespace std;",
+"",
+"int main(gov.comp.911){",
+"  cout << \"[+] Initializing breach...\" << endl;",
+"  cout << \"[+] Bypassing firewall...\" << endl;",
+"  cout << \"[+] Injecting payload...\" << endl;",
+"  cout << \"[+] Access granted.\" << endl;",
+"  virus attack succesful; return 0;",
+"  initiating deployment of Vault 8;",
+"}",
+"",
+"[✔] System compromised",
+"[✔] Welcome to 2026"
+];
+
+let tLine = 0, tChar = 0;
+const terminal = document.getElementById("terminal");
+
+function typeTerminal() {
+    if (tLine < terminalLines.length) {
+        if (tChar < terminalLines[tLine].length) {
+            terminal.textContent += terminalLines[tLine][tChar++];
+        } else {
+            terminal.textContent += "\n";
+            tLine++;
+            tChar = 0;
+        }
+        setTimeout(typeTerminal, 40);
+    }
+}
+typeTerminal();
+
+/* ================= RANDOM THOUGHT ================= */
+
+const thoughts = [
+    "Freedom runs on responsibility.",
+    "One Constitution. One Nation.",
+    "Democracy is India’s strongest algorithm.",
+    "Rights loaded. Duties enforced.",
+    "India compiled successfully in 1950."
+];
+document.getElementById("thought").innerText =
+    thoughts[Math.floor(Math.random() * thoughts.length)];
+
+/* ================= COUNTDOWN (IST) ================= */
+
+const target = new Date("2026-01-26T00:00:00+05:30").getTime();
+
+setInterval(() => {
+    const now = Date.now();
+    const diff = target - now;
+
+    if (diff <= 0) {
+        document.getElementById("countdown").innerText =
+            "🇮🇳 HAPPY REPUBLIC DAY 🇮🇳";
+        return;
+    }
+
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById("countdown").innerText =
+        `${d} Days : ${h} Hours : ${m} Minutes : ${s} Seconds`;
+}, 1000);
+
+/* ================= COPY BUTTON ================= */
+
+function copyMessage() {
+    const text = `A nation isn’t built by code — it’s built by courage.
+Rights empower us. Duties define us.
+Unity is our strongest firewall.
+
+Happy Republic Day 2026 🇮🇳`;
+
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("copyBtn");
+        btn.innerText = "✅ Copied!";
+        setTimeout(() => btn.innerText = "📋 Copy Republic Day Message", 2000);
+    });
+}
+</script>
+
+</body>
+</html>
+
+
