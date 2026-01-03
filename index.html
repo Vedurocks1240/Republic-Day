@@ -106,6 +106,23 @@ pre {
         0 0 15px #ffffff,
         0 0 15px #138808;
 }
+.flag-img {
+    display: block;
+    margin: 30px auto;
+    width: 300px;
+    max-width: 80vw;
+    filter: drop-shadow(0 0 12px #ff9933)
+            drop-shadow(0 0 12px #ffffff)
+            drop-shadow(0 0 12px #138808);
+    animation: wave 4s ease-in-out infinite;
+}
+
+/* subtle waving */
+@keyframes wave {
+    0%   { transform: rotate(0deg); }
+    50%  { transform: rotate(1.5deg); }
+    100% { transform: rotate(0deg); }
+}
 
 </style>
 </head>
@@ -145,7 +162,9 @@ pre {
 ███████╗╚██████╔╝███████╗███████║
 ╚══════╝ ╚═════╝ ╚══════╝╚══════╝
 </pre>
-<div class="big-flag">🇮🇳</div>
+<img src="https://i.ibb.co/z3Ww8kS/flag-india-waving-texture-fabric-50039-1029.avif"
+     alt="Indian Flag"
+     class="flag-img">
 
 <div id="countdown">Loading countdown…</div>
 
@@ -161,6 +180,45 @@ Unity is our strongest firewall.<br><br>
 <button id="copyBtn" onclick="copyMessage()">📋 Copy Republic Day Message</button>
 
 <script>
+function launchFireworks() {
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    for (let i = 0; i < 120; i++) {
+        particles.push({
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            vx: (Math.random() - 0.5) * 8,
+            vy: (Math.random() - 0.5) * 8,
+            life: 100,
+            color: `hsl(${Math.random() * 360},100%,60%)`
+        });
+    }
+
+    function animate() {
+        ctx.fillStyle = "rgba(0,0,0,0.15)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.life--;
+
+            ctx.fillStyle = p.color;
+            ctx.fillRect(p.x, p.y, 3, 3);
+        });
+
+        particles = particles.filter(p => p.life > 0);
+        if (particles.length > 0) requestAnimationFrame(animate);
+    }
+
+    animate();
+}
+
 /* ================= TERMINAL TYPEWRITER ================= */
 
 const terminalLines = [
@@ -176,14 +234,14 @@ const terminalLines = [
 "  cout << \"[+] Access granted.\" << endl;",
 "  virus attack succesful; return 0;",
 "  initiating deployment of Vault 8;",
-"Access to files granted"
-"Remote Access and control granted"
-"Dev tools and Special permssions editing granted"
+"Access to files granted",
+"Remote Access and control granted",
+"Dev tools and Special permssions editing granted",
 "}",
 "",
 "[✔] System compromised",
-"[✔] Initiating Patriotism and National Anthem "
-"[✔] Welcome to 2026"
+"[✔] Initiating Patriotism and National Anthem ",
+"[✔] Welcome to 2026",
 "[✔] Happy Republic Day !!!!!"
 ];
 
@@ -222,22 +280,33 @@ const target = new Date("2026-01-26T00:00:00+05:30").getTime();
 
 setInterval(() => {
     const now = Date.now();
-    const diff = target - now;
+    let diff = target - now;
 
-    if (diff <= 0) {
-        document.getElementById("countdown").innerText =
-            "🇮🇳 HAPPY REPUBLIC DAY 🇮🇳";
-        return;
-    }
+   if (diff <= 0) {
+    document.getElementById("countdown").innerText =
+        "🇮🇳 HAPPY REPUBLIC DAY 🇮🇳";
 
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
+    launchFireworks();   // 🎆 FIREWORKS TRIGGER
+    setInterval(launchFireworks, 1500); // keep blasting 🔥
+
+    return;
+}
+
+    const days = Math.floor(diff / 86400000);
+    diff %= 86400000;
+
+    const hours = Math.floor(diff / 3600000);
+    diff %= 3600000;
+
+    const minutes = Math.floor(diff / 60000);
+    diff %= 60000;
+
+    const seconds = Math.floor(diff / 1000);
+    const milliseconds = diff % 1000;
 
     document.getElementById("countdown").innerText =
-        `${d} Days : ${h} Hours : ${m} Minutes : ${s} Seconds`;
-}, 1000);
+        `${days}d : ${hours}h : ${minutes}m : ${seconds}s : ${milliseconds}ms`;
+}, 50);
 
 /* ================= COPY BUTTON ================= */
 
@@ -258,6 +327,7 @@ Happy Republic Day 2026 🇮🇳`;
 
 </body>
 </html>
+
 
 
 
